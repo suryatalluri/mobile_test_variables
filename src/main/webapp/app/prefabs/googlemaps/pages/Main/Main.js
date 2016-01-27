@@ -1,92 +1,72 @@
 /*global WM, Application*/
 
-Application.$controller("GooglemapsController", ["$scope", "Utils", "$element", "$timeout",
-    function ($scope, Utils, $element, $timeout) {
+Application.$controller("GooglemapsController", ["$scope", "Utils", "$element", "NgMap", "$timeout",
+    function ($scope, Utils, $element, NgMap, $timeout) {
         "use strict";
-
         var _locations = [],
             _icon = "",
             _lat = "",
             _lng = "",
             _info = "",
-            _center,
-            defaultMarkers = [],
-            mapCtrl = {},
+            _color,
+            _radius,
+            perimeter,
             mapContainer,
-            gMap,
-            firstTime = true,
-            defaultCenter = {
-                "latitude": 0,
-                "longitude": 0
-            },
+            defaultCenter = "current-position",
             _oldBoundLocations = -1;
+        $scope.maps = $scope.directionsData = [];
+        $scope.$on('mapInitialized', function(event, evtMap) {
+            $scope.maps.push(evtMap);
+        });
 
-        $scope.map = {
-            "center": defaultCenter,
-            "zoom": 5,
-            "markers": defaultMarkers,
-            "control": mapCtrl
-        };
-
-        function constructMarkersModel() {
-            $scope.map.markers = defaultMarkers;
-            var latSum = 0,
+        function buildMap() {
+            var lat, lng, latlng,
+                len,
+                latSum = 0,
                 lngSum = 0,
                 latNaNCount = 0,
-                lngNaNCount = 0,
-                len;
-            if (_locations) {
-                $scope.map.markers = _locations.map(function (marker, index) {
-                    var lat, lng;
-
-                    lat = +Utils.findValueOf(marker, _lat);
-                    lng = +Utils.findValueOf(marker, _lng);
-
+                lngNaNCount = 0;
+            if(_locations) {
+                if (!_lat || !_lng) {
+                    return;
+                }
+                $scope.markersData = _locations.map(function (marker, index) {
+                    lat = Utils.findValueOf(marker, _lat);
+                    lng = Utils.findValueOf(marker, _lng);
+                    if(lat && lng) {
+                        latlng = "[" + lat + ", " + lng + "]";
+                    }
                     if (isNaN(lat)) {
                         latNaNCount++;
                     } else {
                         latSum += lat;
                     }
-
                     if (isNaN(lng)) {
                         lngNaNCount++;
                     } else {
                         lngSum += lng;
                     }
-
                     return {
-                        "latlng": {
-                            "latitude": lat,
-                            "longitude": lng
-                        },
-                        "icon": _icon ? Utils.findValueOf(marker, _icon) : "",
-                        "info": _info ? Utils.findValueOf(marker, _info) : "",
-                        "id": $scope.$id + "_" + index
-                    };
-                });
-                if (!_center) {
-                    len = $scope.map.markers.length;
-                    if (len > 0 && mapCtrl.refresh) {
-
-                        _center = {
-                            "lat": (latSum / (len - latNaNCount) ),
-                            "lng": (lngSum / (len - lngNaNCount) )
-                        };
-                        mapCtrl.refresh({
-                            "latitude": _center.lat,
-                            "longitude": _center.lng
-                        });
+                        "latlng":latlng,
+                        "iconData":_icon ? Utils.findValueOf(marker, _icon) : "",
+                        "information":_info ? Utils.findValueOf(marker, _info) : "",
+                        "id":$scope.$id + "_" + index,
+                        "color": _color ? Utils.findValueOf(marker, _color) : "",
+                        "radius": _radius ? Utils.findValueOf(marker, _radius) : ""
                     }
-                }
+                });
+                len = $scope.markersData.length;
+                $scope.center = (len === latNaNCount || len === lngNaNCount) ? "[0,0]" : "[" + latSum/(len-latNaNCount) + ", " + lngSum/(len-lngNaNCount) + "]";
+            } else {
+                $scope.center = defaultCenter;
             }
         }
 
-        function _constructMarkersModel() {
-            if (!_lat || !_lng) {
+        function _buildMap() {
+            if(!_lat || !_lng) {
                 return;
             }
-
-            $timeout(constructMarkersModel, 10);
+            $timeout(buildMap, 30);
         }
 
         function onLocationsChange(newVal) {
@@ -117,6 +97,8 @@ Application.$controller("GooglemapsController", ["$scope", "Utils", "$element", 
                 widgetProps.lng.options  = options;
                 widgetProps.icon.options = options;
                 widgetProps.info.options = options;
+                widgetProps.shade.options = options;
+                widgetProps.radius.options = options;
 
                 if (_locations.length > 0) {
                     markerObj = _locations[0];
@@ -132,12 +114,18 @@ Application.$controller("GooglemapsController", ["$scope", "Utils", "$element", 
                         "lat": "",
                         "lng": "",
                         "icon": "",
-                        "info": ""
+                        "info": "",
+                        "shade": "",
+                        "radius": "",
+                        "perimeter": ""
                     });
                     $scope.lat  = "";
                     $scope.lng  = "";
                     $scope.icon = "";
                     $scope.info = "";
+                    $scope.shade = "";
+                    $scope.radius = "";
+                    $scope.perimeter = "";
 
                     _oldBoundLocations = $scope.bindlocations;
                 }
@@ -147,58 +135,56 @@ Application.$controller("GooglemapsController", ["$scope", "Utils", "$element", 
                 }
             }
 
-            _constructMarkersModel();
+            _buildMap();
         }
 
         /* Define the property change handler. This function will be triggered when there is a change in the prefab property */
         function propertyChangeHandler(key, newVal) {
             switch (key) {
-            case "locations":
-                onLocationsChange(newVal);
-                break;
-            case "lat":
-                _lat = newVal;
-                _constructMarkersModel();
-                break;
-            case "lng":
-                _lng = newVal;
-                _constructMarkersModel();
-                break;
-            case "icon":
-                _icon = newVal;
-                _constructMarkersModel();
-                break;
-            case "info":
-                _info = newVal;
-                _constructMarkersModel();
-                break;
-            case "height":
-                if (newVal) {
-                    newVal = parseInt(newVal, 10);
-                    if (isNaN(newVal)) {
-                        return;
+                case "locations":
+                    onLocationsChange(newVal);
+                    break;
+                case "lat":
+                    _lat = newVal;
+                    _buildMap();
+                    break;
+                case "lng":
+                    _lng = newVal;
+                    _buildMap();
+                    break;
+                case "icon":
+                    _icon = newVal;
+                    _buildMap();
+                    break;
+                case "info":
+                    _info = newVal;
+                    _buildMap();
+                    break;
+                case "shade":
+                    _color = newVal;
+                    _buildMap();
+                    break;
+                case "radius":
+                    _radius = newVal;
+                    _buildMap();
+                    break;
+                case "zoom":
+                    if (!isNaN(newVal)) {
+                        $scope.zoom = newVal;
                     }
-
-                    if (!mapContainer && newVal) {
-                        mapContainer = $element.find(".angular-google-map-container");
-                    }
-                    mapContainer.css("height", newVal - 10);
-                }
-                break;
-            case "zoom":
-                newVal = +newVal;
-                if (!isNaN(newVal)) {
-                    $scope.map.zoom = newVal;
-                }
-
-                if (firstTime) {
-                    firstTime = false;
-                    if (!gMap) {
-                        gMap = mapCtrl.getGMap();
-                    }
-                    gMap.setZoom(newVal);
-                }
-                break;
+                    break;
+                case "origin":
+                    $scope.directionsData.origin = newVal;
+                    break;
+                case "destination":
+                    $scope.directionsData.destination = newVal;
+                    break;
+                case "perimeter":
+                    perimeter = newVal;
+                    break;
+                case "trafficlayer":
+                    $scope.trafficlayer = newVal;
+                    break;
             }
         }
 
@@ -206,21 +192,10 @@ Application.$controller("GooglemapsController", ["$scope", "Utils", "$element", 
         $scope.propertyManager.add($scope.propertyManager.ACTIONS.CHANGE, propertyChangeHandler);
 
         function refresh() {
-            $timeout(function () {
-                if (!mapCtrl.refresh) {
-                    return;
-                }
-                if (_center) {
-                    mapCtrl.refresh({
-                        "latitude": _center.lat,
-                        "longitude": _center.lng
-                    });
-                } else {
-                    mapCtrl.refresh();
-                }
-            }, 50, false);
+            $timeout(function(){
+                google.maps.event.trigger($scope.maps[0], 'resize');
+            }, 100);
         }
-
         $scope.refresh = refresh;
         $element.closest(".app-prefab").isolateScope().redraw = refresh;
     }]);

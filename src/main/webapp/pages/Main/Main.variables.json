@@ -4,6 +4,7 @@
     "name" : "Calender",
     "owner" : "Page",
     "category" : "wm.DeviceVariable",
+    "dataBinding" : [ ],
     "service" : "calendar",
     "operation" : "getEvents",
     "dataSet" : [ {
@@ -13,7 +14,6 @@
       "startDate" : "",
       "endDate" : ""
     } ],
-    "dataBinding" : [ ],
     "startUpdate" : true
   },
   "CaptureImage" : {
@@ -21,40 +21,40 @@
     "name" : "CaptureImage",
     "owner" : "Page",
     "category" : "wm.DeviceVariable",
+    "dataBinding" : [ {
+      "target" : "allowImageEdit",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "imageQuality",
+      "value" : 80,
+      "type" : "number"
+    }, {
+      "target" : "imageEncodingType",
+      "value" : "0",
+      "type" : "list"
+    }, {
+      "target" : "correctOrientation",
+      "value" : true,
+      "type" : "boolean"
+    } ],
     "service" : "camera",
     "operation" : "captureImage",
     "dataSet" : {
       "imagePath" : "resources/images/imagelists/default-image.png"
-    },
-    "dataBinding" : [ {
-      "target" : "allowImageEdit",
-      "type" : "boolean",
-      "value" : true
-    }, {
-      "target" : "imageQuality",
-      "type" : "number",
-      "value" : 80
-    }, {
-      "target" : "imageEncodingType",
-      "type" : "list",
-      "value" : "0"
-    }, {
-      "target" : "correctOrientation",
-      "type" : "boolean",
-      "value" : true
-    } ]
+    }
   },
   "CaptureVideo" : {
     "_id" : "wm-CaptureVideo-wm.DeviceVariable-1452073762858",
     "name" : "CaptureVideo",
     "owner" : "Page",
     "category" : "wm.DeviceVariable",
+    "dataBinding" : [ ],
     "service" : "camera",
     "operation" : "captureVideo",
     "dataSet" : {
       "videoPath" : ""
     },
-    "dataBinding" : [ ],
     "startUpdate" : false,
     "autoUpdate" : false
   },
@@ -63,6 +63,7 @@
     "name" : "Contacts",
     "owner" : "Page",
     "category" : "wm.DeviceVariable",
+    "dataBinding" : [ ],
     "service" : "contacts",
     "operation" : "getContacts",
     "dataSet" : [ {
@@ -72,7 +73,6 @@
         "value" : ""
       } ]
     } ],
-    "dataBinding" : [ ],
     "startUpdate" : true
   },
   "fileUpload" : {
@@ -80,6 +80,11 @@
     "name" : "fileUpload",
     "owner" : "Page",
     "category" : "wm.DeviceVariable",
+    "dataBinding" : [ {
+      "target" : "localFile",
+      "value" : "bind:Widgets.camera2.datavalue",
+      "type" : "string"
+    } ],
     "service" : "file",
     "operation" : "upload",
     "dataSet" : {
@@ -88,19 +93,53 @@
       "size" : 0,
       "type" : ""
     },
-    "dataBinding" : [ {
-      "target" : "localFile",
-      "type" : "string",
-      "value" : "bind:Widgets.camera2.datavalue"
-    } ],
     "onSuccess" : "fileUploadonSuccess($event, $scope)",
     "onError" : "fileUploadonError($event, $scope)"
+  },
+  "Location1" : {
+    "_id" : "wm-Location1-wm.DeviceVariable-1453875754652",
+    "name" : "Location1",
+    "owner" : "Page",
+    "category" : "wm.DeviceVariable",
+    "dataBinding" : [ {
+      "target" : "geolocationHighAccuracy",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "geolocationMaximumAge",
+      "value" : 3,
+      "type" : "number"
+    }, {
+      "target" : "geolocationTimeout",
+      "value" : 5,
+      "type" : "number"
+    } ],
+    "service" : "device",
+    "operation" : "getCurrentGeoPosition",
+    "dataSet" : {
+      "coords" : {
+        "latitude" : 0,
+        "longitude" : 0,
+        "altitude" : 0,
+        "accuracy" : 0,
+        "altitudeAccuracy" : 0,
+        "heading" : 0,
+        "speed" : 0
+      },
+      "timestamp" : 0
+    },
+    "startUpdate" : true
   },
   "NetworkInfo" : {
     "_id" : "wm-NetworkInfo-wm.DeviceVariable-1452074339666",
     "name" : "NetworkInfo",
     "owner" : "Page",
     "category" : "wm.DeviceVariable",
+    "dataBinding" : [ {
+      "target" : "networkStatus",
+      "value" : "bind:$root.networkStatus",
+      "type" : "boolean"
+    } ],
     "service" : "device",
     "operation" : "getNetworkInfo",
     "dataSet" : {
@@ -108,11 +147,6 @@
       "isOnline" : true,
       "isOffline" : false
     },
-    "dataBinding" : [ {
-      "target" : "networkStatus",
-      "type" : "boolean",
-      "value" : "bind:$root.networkStatus"
-    } ],
     "startUpdate" : true,
     "autoUpdate" : true
   },
@@ -121,24 +155,24 @@
     "name" : "ScanBarcode",
     "owner" : "Page",
     "category" : "wm.DeviceVariable",
+    "dataBinding" : [ ],
     "service" : "scan",
     "operation" : "scanBarCode",
     "dataSet" : {
       "text" : "BAR CODE",
       "format" : "TEXT",
       "cancelled" : false
-    },
-    "dataBinding" : [ ]
+    }
   },
   "uploadIndicator" : {
     "_id" : "wm-uploadIndicator-wm.Variable-1452074629368",
     "name" : "uploadIndicator",
     "owner" : "Page",
     "category" : "wm.Variable",
+    "dataBinding" : [ ],
     "dataSet" : {
       "dataValue" : "-2"
     },
-    "dataBinding" : [ ],
     "type" : "number",
     "isList" : false,
     "saveInPhonegap" : false

@@ -1,11 +1,34 @@
 <wm-page name="googlemap" data-ng-controller="GooglemapsController">
-    <wm-view name="googlemapview" class="container" backgroundcolor="#fff">
-        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" control="map.control">
-            <ui-gmap-markers models="map.markers" coords="'latlng'" icon="'icon'" dorebuildall="true">
-                <ui-gmap-windows ng-cloak dorebuildall="true">
-                    <p ng-non-bindable>{{info}}</p>
-                </ui-gmap-windows>
-            </ui-gmap-markers>
-        </ui-gmap-google-map>
+    <wm-view name="googlemapview" style="height:{{height}};" class="container" backgroundcolor="#fff">
+        <ng-map id="map" default-style="false" style="height:95%; width:100%" center="{{center}}" zoom="{{zoom}}" draggable="true">
+            <div ng-repeat="marker in markersData">
+                <marker position="{{marker.latlng}}" on-click="map.showInfoWindow(marker.id)" icon="{{marker.iconData}}">
+                </marker>
+                <info-window id="{{marker.id}}" ng-cloak ><div><p>{{marker.information}}</p></div></info-window>
+            </div>
+            <shape data-ng-if="perimeter" name="circle" ng-repeat="shape in markersData" no-watcher="true"
+                   stroke-color="{{shape.color}}"
+                   stroke-opacity="0.5"
+                   stroke-weight="2"
+                   fill-color="{{shape.color}}"
+                   fill-opacity="0.35"
+                   center="{{shape.latlng}}"
+                   radius="{{shape.radius}}">
+            </shape>
+            <directions
+                    draggable="true"
+                    travel-mode="DRIVING"
+                    origin="{{directionsData.origin}}"
+                    destination="{{directionsData.destination}}" provideRouteAlternatives="true" hideRouteList="false">
+            </directions>
+            <traffic-layer data-ng-if="trafficlayer"></traffic-layer>
+        </ng-map>
+        <div style="height:5%;" data-ng-if="map.directionsRenderers[0].directions.status">
+            <p><b>Origin:</b> {{map.directionsRenderers[0].directions.routes[0].legs[0].start_address}}
+                <b>Destination:</b> {{map.directionsRenderers[0].directions.routes[0].legs[0].end_address}}
+                <b>Distance:</b> {{map.directionsRenderers[0].directions.routes[0].legs[0].distance.text}}
+                <b>Duration via Driving:</b> {{map.directionsRenderers[0].directions.routes[0].legs[0].duration.text}}
+            </p>
+        </div>
     </wm-view>
 </wm-page>
