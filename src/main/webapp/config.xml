@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.mobile_test_variables" version="1.0.4">
+    <name>mobile_test_variables</name>
+    <description>
+        
+    </description>
+    <author email="surya.talluri@gmail.com" href="">
+        
+    </author>
+    <content src="index.html"/>
+    <access origin="https://*/*"/>
+    <access origin="http://*/*"/>
+    <access origin="https://www.wavemakeronline.com/run-3v46v7hqx1/mobile_test_variables/*"/>
+    <plugin name="cordova-plugin-whitelist" spec="1.0.0"/>
+    <plugin name="cordova-plugin-app-version" spec="0.1.8"/>
+    <plugin name="cordova-plugin-device" spec="1.0.1"/>
+    <plugin name="cordova-plugin-media-capture" spec="1.0.1"/>
+    <plugin name="cordova-plugin-file-transfer" spec="1.4.0"/>
+    <plugin name="cordova-plugin-file" spec="3.0.0"/>
+    <plugin name="cordova-plugin-datepicker" spec="0.8.6"/>
+    <plugin name="cordova-plugin-vibration" spec="1.2.0"/>
+    <plugin name="phonegap-plugin-barcodescanner" spec="4.0.1"/>
+    <plugin name="cordova-plugin-geolocation" spec="1.0.1"/>
+    <plugin name="cordova-plugin-contacts" spec="1.1.0"/>
+    <plugin name="cordova-plugin-camera" spec="1.2.0"/>
+    <plugin name="cordova-plugin-calendar" spec="4.4.1"/>
+    <plugin name="cordova-plugin-network-information" spec="1.0.1"/>
+    <plugin name="cordova-plugin-splashscreen" spec="2.1.0"/>
+    <allow-intent href="https://*/*"/>
+    <allow-intent href="http://*/*"/>
+    <platform name="android">
+        <splash density="land-ldpi" height="0" src="resources/images/logos/android/land-Splash-screen-ldpi.png" width="0"/>
+        <splash density="land-mdpi" height="0" src="resources/images/logos/android/land-Splash-screen-mdpi.png" width="0"/>
+        <splash density="land-hdpi" height="0" src="resources/images/logos/android/land-Splash-screen-hdpi.png" width="0"/>
+        <splash density="land-hdpi" height="0" src="resources/images/logos/android/land-Splash-screen-Default.png" width="0"/>
+        <splash density="land-xhdpi" height="0" src="resources/images/logos/android/land-Splash-screen-xhdpi.png" width="0"/>
+        <splash density="land-xxhdpi" height="0" src="resources/images/logos/android/land-Splash-screen-xxhdpi.png" width="0"/>
+        <splash density="port-ldpi" height="0" src="resources/images/logos/android/splash-screen-ldpi.png" width="0"/>
+        <splash density="port-mdpi" height="0" src="resources/images/logos/android/splash-screen-mdpi.png" width="0"/>
+        <splash density="port-mdpi" height="0" src="resources/images/logos/android/splash-screen-default.png" width="0"/>
+        <splash density="port-hdpi" height="0" src="resources/images/logos/android/splash-screen-hdpi.png" width="0"/>
+        <splash density="port-xhdpi" height="0" src="resources/images/logos/android/splash-screen-xhdpi.png" width="0"/>
+        <splash density="port-xxhdpi" height="0" src="resources/images/logos/android/splash-screen-xxhdpi.png" width="0"/>
+        <icon density="ldpi" height="0" src="resources/images/logos/android/icon-ldpi.png" width="0"/>
+        <icon density="mdpi" height="0" src="resources/images/logos/android/icon-mdpi.png" width="0"/>
+        <icon density="hdpi" height="0" src="resources/images/logos/android/icon-hdpi.png" width="0"/>
+        <icon density="xhdpi" height="0" src="resources/images/logos/android/icon-xhdpi.png" width="0"/>
+        <icon density="xhdpi" height="0" src="resources/images/logos/android/icon-default.png" width="0"/>
+        <icon density="xxhdpi" height="0" src="resources/images/logos/android/icon-xxhdpi.png" width="0"/>
+    </platform>
+    <platform name="ios">
+        <splash height="1004" src="resources/images/logos/ios/default.png" width="768"/>
+        <splash height="960" src="resources/images/logos/ios/default@2x~iphone_640x960.png" width="640"/>
+        <splash height="1136" src="resources/images/logos/ios/default-568h@2x~iphone_640x1136.png" width="640"/>
+        <splash height="750" src="resources/images/logos/ios/default-750@2x~iphone6-landscape_1334x750.png" width="1334"/>
+        <splash height="1334" src="resources/images/logos/ios/default-750@2x~iphone6-portrait_750x1334.png" width="750"/>
+        <splash height="1242" src="resources/images/logos/ios/default-1242@3x~iphone6s-landscape_2208x1242.png" width="2208"/>
+        <splash height="2208" src="resources/images/logos/ios/default-1242@3x~iphone6s-portrait_1242x2208.png" width="1242"/>
+        <splash height="1496" src="resources/images/logos/ios/default-Landscape@2x~ipad_2048x1496.png" width="2048"/>
+        <splash height="1536" src="resources/images/logos/ios/default-Landscape@2x~ipad_2048x1536.png" width="2048"/>
+        <splash height="748" src="resources/images/logos/ios/default-Landscape~ipad_1024x748.png" width="1024"/>
+        <splash height="768" src="resources/images/logos/ios/default-Landscape~ipad_1024x768.png" width="1024"/>
+        <splash height="2008" src="resources/images/logos/ios/default-Portrait@2x~ipad_1536x2008.png" width="1536"/>
+        <splash height="2048" src="resources/images/logos/ios/default-Portrait@2x~ipad_1536x2048.png" width="1536"/>
+        <splash height="1024" src="resources/images/logos/ios/default-Portrait~ipad_768x1024.png" width="768"/>
+        <splash height="2008" src="resources/images/logos/ios/default~ipad.png" width="1536"/>
+        <splash height="480" src="resources/images/logos/ios/default~iphone.png" width="320"/>
+        <icon height="57" src="resources/images/logos/ios/icon.png" width="57"/>
+        <icon height="114" src="resources/images/logos/ios/icon@2x.png" width="114"/>
+        <icon height="29" src="resources/images/logos/ios/icon-29.png" width="29"/>
+        <icon height="40" src="resources/images/logos/ios/icon-40.png" width="40"/>
+        <icon height="80" src="resources/images/logos/ios/icon-40@2x.png" width="80"/>
+        <icon height="50" src="resources/images/logos/ios/icon-50.png" width="50"/>
+        <icon height="58" src="resources/images/logos/ios/icon-58.png" width="58"/>
+        <icon height="60" src="resources/images/logos/ios/icon-60.png" width="60"/>
+        <icon height="72" src="resources/images/logos/ios/icon-72.png" width="72"/>
+        <icon height="144" src="resources/images/logos/ios/icon-72@2x.png" width="144"/>
+        <icon height="76" src="resources/images/logos/ios/icon-76.png" width="76"/>
+        <icon height="80" src="resources/images/logos/ios/icon-80.png" width="80"/>
+        <icon height="100" src="resources/images/logos/ios/icon-100.png" width="100"/>
+        <icon height="120" src="resources/images/logos/ios/icon-120.png" width="120"/>
+        <icon height="152" src="resources/images/logos/ios/icon-152.png" width="152"/>
+        <icon height="180" src="resources/images/logos/ios/icon-180@3x.png" width="180"/>
+    </platform>
+    <preference name="Orientation" value="default"/>
+    <preference name="FullScreen" value="false"/>
+    <preference name="prerendered-icon" value="false"/>
+    <preference name="ios-statusbarstyle" value="default"/>
+    <preference name="AutoHideSplashScreen" value="false"/>
+    <preference name="SplashScreenDelay" value="100000"/>
+</widget>

@@ -1,0 +1,146 @@
+{
+  "Calender" : {
+    "_id" : "wm-Calender-wm.DeviceVariable-1452075043078",
+    "name" : "Calender",
+    "owner" : "Page",
+    "category" : "wm.DeviceVariable",
+    "service" : "calendar",
+    "operation" : "getEvents",
+    "dataSet" : [ {
+      "title" : "",
+      "message" : "",
+      "location" : "",
+      "startDate" : "",
+      "endDate" : ""
+    } ],
+    "dataBinding" : [ ],
+    "startUpdate" : true
+  },
+  "CaptureImage" : {
+    "_id" : "wm-CaptureImage-wm.DeviceVariable-1452073781219",
+    "name" : "CaptureImage",
+    "owner" : "Page",
+    "category" : "wm.DeviceVariable",
+    "service" : "camera",
+    "operation" : "captureImage",
+    "dataSet" : {
+      "imagePath" : "resources/images/imagelists/default-image.png"
+    },
+    "dataBinding" : [ {
+      "target" : "allowImageEdit",
+      "type" : "boolean",
+      "value" : true
+    }, {
+      "target" : "imageQuality",
+      "type" : "number",
+      "value" : 80
+    }, {
+      "target" : "imageEncodingType",
+      "type" : "list",
+      "value" : "0"
+    }, {
+      "target" : "correctOrientation",
+      "type" : "boolean",
+      "value" : true
+    } ]
+  },
+  "CaptureVideo" : {
+    "_id" : "wm-CaptureVideo-wm.DeviceVariable-1452073762858",
+    "name" : "CaptureVideo",
+    "owner" : "Page",
+    "category" : "wm.DeviceVariable",
+    "service" : "camera",
+    "operation" : "captureVideo",
+    "dataSet" : {
+      "videoPath" : ""
+    },
+    "dataBinding" : [ ],
+    "startUpdate" : false,
+    "autoUpdate" : false
+  },
+  "Contacts" : {
+    "_id" : "wm-Contacts-wm.DeviceVariable-1452075012930",
+    "name" : "Contacts",
+    "owner" : "Page",
+    "category" : "wm.DeviceVariable",
+    "service" : "contacts",
+    "operation" : "getContacts",
+    "dataSet" : [ {
+      "id" : "",
+      "displayName" : "",
+      "phoneNumbers" : [ {
+        "value" : ""
+      } ]
+    } ],
+    "dataBinding" : [ ],
+    "startUpdate" : true
+  },
+  "fileUpload" : {
+    "_id" : "wm-fileUpload-wm.DeviceVariable-1452074844327",
+    "name" : "fileUpload",
+    "owner" : "Page",
+    "category" : "wm.DeviceVariable",
+    "service" : "file",
+    "operation" : "upload",
+    "dataSet" : {
+      "name" : "",
+      "path" : "",
+      "size" : 0,
+      "type" : ""
+    },
+    "dataBinding" : [ {
+      "target" : "localFile",
+      "type" : "string",
+      "value" : "bind:Widgets.camera2.datavalue"
+    } ],
+    "onSuccess" : "fileUploadonSuccess($event, $scope)",
+    "onError" : "fileUploadonError($event, $scope)"
+  },
+  "NetworkInfo" : {
+    "_id" : "wm-NetworkInfo-wm.DeviceVariable-1452074339666",
+    "name" : "NetworkInfo",
+    "owner" : "Page",
+    "category" : "wm.DeviceVariable",
+    "service" : "device",
+    "operation" : "getNetworkInfo",
+    "dataSet" : {
+      "connectionType" : "NONE",
+      "isOnline" : true,
+      "isOffline" : false
+    },
+    "dataBinding" : [ {
+      "target" : "networkStatus",
+      "type" : "boolean",
+      "value" : "bind:$root.networkStatus"
+    } ],
+    "startUpdate" : true,
+    "autoUpdate" : true
+  },
+  "ScanBarcode" : {
+    "_id" : "wm-ScanBarcode-wm.DeviceVariable-1452074001102",
+    "name" : "ScanBarcode",
+    "owner" : "Page",
+    "category" : "wm.DeviceVariable",
+    "service" : "scan",
+    "operation" : "scanBarCode",
+    "dataSet" : {
+      "text" : "BAR CODE",
+      "format" : "TEXT",
+      "cancelled" : false
+    },
+    "dataBinding" : [ ]
+  },
+  "uploadIndicator" : {
+    "_id" : "wm-uploadIndicator-wm.Variable-1452074629368",
+    "name" : "uploadIndicator",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataSet" : {
+      "dataValue" : "-2"
+    },
+    "dataBinding" : [ ],
+    "type" : "number",
+    "isList" : false,
+    "saveInPhonegap" : false
+  }
+}

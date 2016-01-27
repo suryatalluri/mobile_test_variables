@@ -1,0 +1,11 @@
+<wm-page name="googlemap" data-ng-controller="GooglemapsController">
+    <wm-view name="googlemapview" class="container" backgroundcolor="#fff">
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" control="map.control">
+            <ui-gmap-markers models="map.markers" coords="'latlng'" icon="'icon'" dorebuildall="true">
+                <ui-gmap-windows ng-cloak dorebuildall="true">
+                    <p ng-non-bindable>{{info}}</p>
+                </ui-gmap-windows>
+            </ui-gmap-markers>
+        </ui-gmap-google-map>
+    </wm-view>
+</wm-page>

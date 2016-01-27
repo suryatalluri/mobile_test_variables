@@ -1,0 +1,81 @@
+<style id="Login.css">
+
+</style>
+<script id="Login.js">
+Application.$controller("LoginPageController", ["$scope",
+    function ($scope) {
+        "use strict";
+        /* perform any action on the variables within this block(on-page-load) */
+        $scope.onPageVariablesReady = function () {
+            /*
+             * variables can be accessed through '$scope.Variables' property here
+             * e.g. to get data in a static variable named 'loggedInUser' use following script
+             * $scope.Variables.loggedInUser.getData()
+             */
+        };
+        /* perform any action on widgets within this block */
+        $scope.onPageReady = function () {
+            /*
+             * widgets can be accessed through '$scope.Widgets' property here
+             * e.g. to get value of text widget named 'username' use following script
+             * '$scope.Widgets.username.datavalue'
+             */
+        };
+    }
+]);
+
+Application.$controller("loginFormController", ["$scope",
+    function ($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+</script>
+<script id="Login.variables.json">
+var _LoginPage_Variables_ ={
+	"loginVariable": {
+		"type": "string",
+		"owner": "Page",
+		"dataSet": {
+			"username": "",
+			"password": ""
+		},
+		"dataBinding": {
+			"username": "bind:Widgets.usernametext.datavalue",
+			"password": "bind:Widgets.passwordtext.datavalue"
+		},
+		"saveInPhonegap": false,
+		"startUpdate": false,
+		"autoUpdate": false,
+		"name": "loginVariable",
+		"onError": "Javascript",
+		"useDefaultSuccessHandler": true,
+		"category": "wm.LoginVariable",
+		"_id": "wm-wm.LoginVariable1398237232072"
+	}
+}
+</script>
+<script id="Login.html" type="text/ng-template">
+<wm-page data-ng-controller="LoginPageController" name="page1">
+  <wm-mobile-navbar title="Login" backbutton="false"></wm-mobile-navbar>
+  <wm-content name="content1">
+    <wm-page-content columnwidth="12">
+      <wm-login name="loginForm" data-ng-controller="loginFormController" on-submit="loginVariable">
+        <wm-composite name="userNameField">
+          <wm-label caption="Username" name="userNameLabel"></wm-label>
+          <wm-text placeholder="Enter username" name="usernametext" class="app-login-username" width="100%" autocomplete="off" autocorrect="off" autocapitalize="off" updateon="default"></wm-text>
+        </wm-composite>
+        <wm-composite name="passwordField">
+          <wm-label caption="Password" name="passwordLabel"></wm-label>
+          <wm-text type="password" name="passwordtext" placeholder="Enter password" class="app-login-password" width="100%" autocomplete="off" autocorrect="off" autocapitalize="off" updateon="default"></wm-text>
+        </wm-composite>
+        <wm-button type="submit" caption="Sign in" width="100%" class="app-login-button btn-primary" name="loginButton"></wm-button>
+        <wm-composite name="remembermeFields" class="app-login-rememberme">
+          <wm-checkbox caption="Remember Me" name="remembermeCheck"></wm-checkbox>
+        </wm-composite>
+        <wm-anchor caption="Forgot Password" class="app-login-forgotlink" name="forgetPassword"></wm-anchor>
+      </wm-login>
+    </wm-page-content>
+  </wm-content>
+</wm-page>
+</script>

@@ -1,0 +1,234 @@
+<wm-page data-ng-controller="MainPageController" name="page1">
+    <wm-left-panel content="leftnav" name="left_panel1"></wm-left-panel>
+    <wm-mobile-navbar name="mobile_navbar1"></wm-mobile-navbar>
+    <wm-content name="content1">
+        <wm-page-content columnwidth="12" name="page_content1">
+            <wm-segmented-control name="segmented_control1">
+                <wm-segment-content caption="Camera" name="segment_content1">
+                    <wm-tabs name="tabs1">
+                        <wm-tabpane name="tabpane1">
+                            <wm-tabheader name="tabheader1" heading="Video"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent1">
+                                <wm-container name="container1" horizontalalign="center" margintop="10">
+                                    <wm-button class="btn-default" caption="CaptureVideo" type="button" name="button1" on-tap="CaptureVideo"></wm-button>
+                                </wm-container>
+                                <wm-container name="container2" horizontalalign="center" margintop="10">
+                                    <wm-video controls="controls" videopreload="none" name="video1" mp4format="bind:Variables.CaptureVideo.dataSet.videoPath"></wm-video>
+                                </wm-container>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                        <wm-tabpane name="tabpane2">
+                            <wm-tabheader name="tabheader2" heading="Image"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent2">
+                                <wm-container name="container3" horizontalalign="center" margintop="10">
+                                    <wm-button class="btn-default" caption="Capture image" type="button" name="button2" on-tap="CaptureImage"></wm-button>
+                                </wm-container>
+                                <wm-container name="container4" horizontalalign="center" margintop="10">
+                                    <wm-picture name="picture1" picturesource="bind:Variables.CaptureImage.dataSet.imagePath"></wm-picture>
+                                </wm-container>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                        <wm-tabpane name="tabpane3">
+                            <wm-tabheader name="tabheader3" heading="Camera-Widget"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent3">
+                                <wm-container name="container5" horizontalalign="center" margintop="10">
+                                    <wm-camera name="camera1"></wm-camera>
+                                </wm-container>
+                                <wm-container name="container6" horizontalalign="center" margintop="10">
+                                    <wm-picture name="picture2" picturesource="bind:Widgets.camera1.datavalue"></wm-picture>
+                                </wm-container>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                    </wm-tabs>
+                </wm-segment-content>
+                <wm-segment-content caption="Barcode" name="segment_content2">
+                    <wm-tabs name="tabs2">
+                        <wm-tabpane name="tabpane4">
+                            <wm-tabheader name="tabheader4" heading="Barcode-Variable" horizontalalign="center"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent4">
+                                <wm-container name="container7" horizontalalign="center" margintop="10">
+                                    <wm-button class="btn-default" caption="Sacn barcode" type="button" name="button3" on-tap="ScanBarcode"></wm-button>
+                                </wm-container>
+                                <wm-container name="container8" horizontalalign="center" margintop="10">
+                                    <wm-label name="label1" caption="bind:Variables.ScanBarcode.dataSet.text"></wm-label>
+                                </wm-container>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                        <wm-tabpane name="tabpane5">
+                            <wm-tabheader name="tabheader5" heading="Barcode-Widget"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent5">
+                                <wm-container name="container9" horizontalalign="center" margintop="10">
+                                    <wm-barcodescanner name="barcodescanner1"></wm-barcodescanner>
+                                </wm-container>
+                                <wm-container name="container10" horizontalalign="center" margintop="10">
+                                    <wm-label name="label2" caption="bind:Widgets.barcodescanner1.datavalue"></wm-label>
+                                </wm-container>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                    </wm-tabs>
+                </wm-segment-content>
+                <wm-segment-content caption="Device-Variables" name="segment_content3">
+                    <wm-tabs name="tabs3">
+                        <wm-tabpane name="tabpane6">
+                            <wm-tabheader name="tabheader6" heading="AppInfo"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent6">
+                                <wm-livelist listclass="list-group" itemclass="list-group-item" dataset="bind:Variables.appInfo.dataSet" name="livelist2">
+                                    <wm-listtemplate layout="blank" name="listtemplate2">
+                                        <wm-container class="blank" data-template-ctr="true" name="container12">
+                                            <wm-layoutgrid class="gridlayout" name="layoutgrid2">
+                                                <wm-gridrow name="gridrow2">
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn3">
+                                                        <wm-label width="100%" caption="bind:Variables.appInfo.dataSet.appversion" name="label5"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn4">
+                                                        <wm-label width="100%" caption="bind:Variables.appInfo.dataSet.cordovaversion" name="label6"></wm-label>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-container>
+                                    </wm-listtemplate>
+                                </wm-livelist>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                        <wm-tabpane name="tabpane7">
+                            <wm-tabheader name="tabheader7" heading="DeviceInfo"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent7">
+                                <wm-livelist listclass="list-group" itemclass="list-group-item" dataset="bind:Variables.deviceInfo.dataSet" name="livelist3">
+                                    <wm-listtemplate layout="blank" name="listtemplate3">
+                                        <wm-container class="blank" data-template-ctr="true" name="container13">
+                                            <wm-layoutgrid class="gridlayout" name="layoutgrid3">
+                                                <wm-gridrow name="gridrow3">
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn5">
+                                                        <wm-label width="100%" caption="bind:Variables.deviceInfo.dataSet.connectionType" name="label7"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn6">
+                                                        <wm-label width="100%" caption="bind:Variables.deviceInfo.dataSet.deviceModel" name="label8"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn7">
+                                                        <wm-label width="100%" caption="bind:Variables.deviceInfo.dataSet.os" name="label9"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn8">
+                                                        <wm-label width="100%" caption="bind:Variables.deviceInfo.dataSet.osVersion" name="label10"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn9">
+                                                        <wm-label width="100%" caption="bind:Variables.deviceInfo.dataSet.deviceUUID" name="label11"></wm-label>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-container>
+                                    </wm-listtemplate>
+                                </wm-livelist>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                        <wm-tabpane name="tabpane8">
+                            <wm-tabheader name="tabheader8" heading="Location"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent8">
+                                <wm-prefab prefabname="googlemaps" name="googlemaps2" locations="bind:Variables.Location.dataSet" lat="coords.latitude" lng="coords.longitude" zoom="5" height="400px"></wm-prefab>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                        <wm-tabpane name="tabpane9">
+                            <wm-tabheader name="tabheader9" heading="NetworkInfo"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent9">
+                                <wm-livelist listclass="list-group" itemclass="list-group-item" dataset="bind:Variables.NetworkInfo.dataSet" name="livelist4">
+                                    <wm-listtemplate layout="blank" name="listtemplate4">
+                                        <wm-container class="blank" data-template-ctr="true" name="container14">
+                                            <wm-layoutgrid class="gridlayout" name="layoutgrid4">
+                                                <wm-gridrow name="gridrow4">
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn10">
+                                                        <wm-label width="100%" caption="bind:Variables.NetworkInfo.dataSet.connectionType" name="label12"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn11">
+                                                        <wm-label width="100%" caption="bind:Variables.NetworkInfo.dataSet.isOnline" name="label13"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn12">
+                                                        <wm-label width="100%" caption="bind:Variables.NetworkInfo.dataSet.isOffline" name="label14"></wm-label>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-container>
+                                    </wm-listtemplate>
+                                </wm-livelist>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                    </wm-tabs>
+                    <wm-button class="btn-default" caption="Button" type="button" name="button4" on-tap="goToPage_Page"></wm-button>
+                </wm-segment-content>
+                <wm-segment-content caption="Misc" name="segment_content4">
+                    <wm-tabs name="tabs4">
+                        <wm-tabpane name="tabpane10">
+                            <wm-tabheader name="tabheader10" heading="FileUpload"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent10">
+                                <wm-container name="container15" horizontalalign="center" margintop="10">
+                                    <wm-camera name="camera2" on-success="camera2Success($event, $scope);fileUpload"></wm-camera>
+                                </wm-container>
+                                <wm-container name="container16" horizontalalign="center" color="blue" backgroundcolor="skyblue" show="bind:Variables.uploadIndicator.dataSet.dataValue === 0" margintop="10">
+                                    <wm-label name="label13_1" caption="Uploading" color="white"></wm-label>
+                                </wm-container>
+                                <wm-container name="container17" horizontalalign="center" backgroundcolor="Green" show="bind:Variables.uploadIndicator.dataSet.dataValue === 1" margintop="10">
+                                    <wm-label name="label14_1" caption="Successfull" color="white"></wm-label>
+                                </wm-container>
+                                <wm-container name="container19" horizontalalign="center" backgroundcolor="Red" show="bind:Variables.uploadIndicator.dataSet.dataValue === -1" margintop="10">
+                                    <wm-label name="label15" caption="Failed" color="white"></wm-label>
+                                </wm-container>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                        <wm-tabpane name="tabpane11">
+                            <wm-tabheader name="tabheader11" heading="Contacts"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent11">
+                                <wm-livelist listclass="list-group" itemclass="list-group-item" dataset="bind:Variables.Contacts.dataSet" name="livelist4_1">
+                                    <wm-listtemplate layout="blank" name="listtemplate4_1">
+                                        <wm-container class="blank" data-template-ctr="true" name="container18">
+                                            <wm-layoutgrid class="gridlayout" name="layoutgrid4_1">
+                                                <wm-gridrow name="gridrow4_1">
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn11_1">
+                                                        <wm-label width="100%" caption="bind:Variables.Contacts.dataSet.id" name="label16"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn12_1">
+                                                        <wm-label width="100%" caption="bind:Variables.Contacts.dataSet.displayName" name="label17"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn13">
+                                                        <wm-label width="100%" caption="bind:Variables.Contacts.dataSet.phoneNumbers[0].value" name="label18"></wm-label>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-container>
+                                    </wm-listtemplate>
+                                </wm-livelist>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                        <wm-tabpane name="tabpane12">
+                            <wm-tabheader name="tabheader12" heading="Calender"></wm-tabheader>
+                            <wm-tabcontent name="tabcontent12">
+                                <wm-livelist listclass="list-group" itemclass="list-group-item" dataset="bind:Variables.Calender.dataSet" name="livelist5">
+                                    <wm-listtemplate layout="blank" name="listtemplate5">
+                                        <wm-container class="blank" data-template-ctr="true" name="container19_1">
+                                            <wm-layoutgrid class="gridlayout" name="layoutgrid5">
+                                                <wm-gridrow name="gridrow5">
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn14">
+                                                        <wm-label width="100%" caption="bind:Variables.Calender.dataSet.title" name="label19"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn15">
+                                                        <wm-label width="100%" caption="bind:Variables.Calender.dataSet.message" name="label20"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn16">
+                                                        <wm-label width="100%" caption="bind:Variables.Calender.dataSet.location" name="label21"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn17">
+                                                        <wm-label width="100%" caption="bind:Variables.Calender.dataSet.startDate" name="label22"></wm-label>
+                                                    </wm-gridcolumn>
+                                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn18">
+                                                        <wm-label width="100%" caption="bind:Variables.Calender.dataSet.endDate" name="label23"></wm-label>
+                                                    </wm-gridcolumn>
+                                                </wm-gridrow>
+                                            </wm-layoutgrid>
+                                        </wm-container>
+                                    </wm-listtemplate>
+                                </wm-livelist>
+                            </wm-tabcontent>
+                        </wm-tabpane>
+                    </wm-tabs>
+                </wm-segment-content>
+            </wm-segmented-control>
+        </wm-page-content>
+    </wm-content>
+</wm-page>
